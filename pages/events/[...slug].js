@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ParticularEventDetails = () => {
+const FilteredEventsPage = () => {
     return (
         <div>
-            this is the particular event details
+            <h1>Filtered Events Page</h1>
         </div>
     );
 };
 
-export default ParticularEventDetails;
+export default FilteredEventsPage;
