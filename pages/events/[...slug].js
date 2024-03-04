@@ -3,6 +3,7 @@ import ResultsTitle from "@/components/events/results-title";
 import Button from "@/components/ui/Button";
 import ErrorAlert from "@/components/ui/error-alert/error-alert";
 import { getFilteredEvents } from "@/dummy-data";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -34,6 +35,9 @@ const FilteredEventsPage = () => {
   ) {
     return (
       <>
+        <Head>
+          <title>Invalid Filter</title>
+        </Head>
         <div className="space-y-5">
           <ErrorAlert>
             <p>Invalid Filter</p>
@@ -54,6 +58,9 @@ const FilteredEventsPage = () => {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        <Head>
+          <title>Event Not Found</title>
+        </Head>
         <div className="space-y-5">
           <ErrorAlert>
             <p>No events found !!</p>
@@ -70,6 +77,9 @@ const FilteredEventsPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Filtered Event</title>
+      </Head>
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </>

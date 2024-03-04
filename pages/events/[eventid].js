@@ -13,9 +13,14 @@ const EventDetailPage = () => {
 
   if (!event) {
     return (
-      <ErrorAlert>
-        <p>No event found!</p>
-      </ErrorAlert>
+      <>
+        <Head>
+          <title>Event Not Found</title>
+        </Head>
+        <ErrorAlert>
+          <p>No event found!</p>
+        </ErrorAlert>
+      </>
     );
   }
 
