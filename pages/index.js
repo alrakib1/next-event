@@ -10,6 +10,7 @@ export default function Home() {
       <Head>
         <title>Next Event</title>
       </Head>
+      
       <EventList items={featuredEvents} />
     </>
   );
