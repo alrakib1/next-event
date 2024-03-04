@@ -4,6 +4,7 @@ import EventSummary from "@/components/event-detail/event-summary";
 import { getEventById } from "@/dummy-data";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import ErrorAlert from "@/components/ui/error-alert/error-alert";
 
 const EventDetailPage = () => {
   const router = useRouter();
@@ -11,7 +12,11 @@ const EventDetailPage = () => {
   const event = getEventById(eventId);
 
   if (!event) {
-    return <p>No event found!</p>;
+    return (
+      <ErrorAlert>
+        <p>No event found!</p>
+      </ErrorAlert>
+    );
   }
 
   return (
