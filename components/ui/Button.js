@@ -3,7 +3,7 @@ import classes from "./button.module.css";
 
 const Button = (props) => {
   return (
-    <Link href={props.link}>
+    <Link legacyBehavior href={props.link}>
       <a className={classes.btn}>{props.children}</a>
     </Link>
   );
