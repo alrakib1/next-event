@@ -24,5 +24,9 @@ export async function getStaticProps(ctx) {
     props: {
       events: featuredEvents,
     },
+    revalidate: 1800,
   };
 }
+
+
+

@@ -52,6 +52,7 @@ export async function getStaticProps(ctx) {
     props: {
       selectedEvent: event,
     },
+    revalidate: 30,
   };
 }
 
