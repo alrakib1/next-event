@@ -1,15 +1,13 @@
 import EventContent from "@/components/event-detail/event-content";
 import EventLogistics from "@/components/event-detail/event-logistics";
 import EventSummary from "@/components/event-detail/event-summary";
-import { getEventById } from "@/dummy-data";
-import { useRouter } from "next/router";
+
 import Head from "next/head";
 import ErrorAlert from "@/components/ui/error-alert/error-alert";
+import { getAllEvents, getEventById } from "../utils/api-utils";
 
-const EventDetailPage = () => {
-  const router = useRouter();
-  const eventId = router.query.eventId;
-  const event = getEventById(eventId);
+const EventDetailPage = (props) => {
+  const event = props.selectedEvent;
 
   if (!event) {
     return (
@@ -44,3 +42,34 @@ const EventDetailPage = () => {
 };
 
 export default EventDetailPage;
+
+export async function getStaticProps(ctx) {
+  const eventId = ctx.params.eventid;
+
+  const event = await getEventById(eventId);
+
+  return {
+    props: {
+      selectedEvent: event,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const events = await getAllEvents();
+  console.log(events);
+  console.log(events.map((event) => event.id));
+
+  const paths = events.map((event) => {
+    if (!event.id) {
+      throw new Error(`Event ${event.title} does not have an id`);
+    }
+
+    return { params: { eventid: event.id } };
+  });
+
+  return {
+    paths: paths,
+    fallback: false,
+  };
+}
