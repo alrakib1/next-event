@@ -1,4 +1,4 @@
-async function getAllEvents() {
+export async function getAllEvents() {
   const response = await fetch(
     "https://car-doctor-5f3ce-default-rtdb.firebaseio.com/events.json"
   );
@@ -20,15 +20,15 @@ async function getAllEvents() {
   return events;
 }
 
-async function getFeaturedEvents() {
+export async function getFeaturedEvents() {
   const allEvents = await getAllEvents();
 
   return allEvents.filter((event) => event.isFeatured);
 }
 
-async function getEventById(id) {
+export async function getEventById(id) {
   const allEvents = await getAllEvents();
   return allEvents.find((event) => event.id === id);
 }
 
-module.exports = { getAllEvents, getFeaturedEvents, getEventById };
+

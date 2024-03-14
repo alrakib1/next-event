@@ -1,17 +1,13 @@
 import EventList from "@/components/events/event-list";
 import EventsSearch from "@/components/events/events-search";
-import { getAllEvents } from "@/dummy-data";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { getAllEvents } from "../api/api-utils";
 
-const AllEventsPage = () => {
+
+const AllEventsPage = (props) => {
   const router = useRouter();
 
-  const [events, setEvents] = useState();
-
-  fetch("https://car-doctor-5f3ce-default-rtdb.firebaseio.com/events.json")
-    .then((response) => response.json())
-    .then((data) => setEvents(data));
+  const { events } = props;
 
   const findEventsHandler = (year, month) => {
     const fullPath = `/events/${year}/${month}`;
@@ -28,3 +24,14 @@ const AllEventsPage = () => {
 };
 
 export default AllEventsPage;
+
+export async function getStaticProps(ctx) {
+  const events = await getAllEvents();
+
+  return {
+    props: {
+      events: events,
+    },
+    revalidate: 60,
+  };
+}

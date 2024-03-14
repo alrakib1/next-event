@@ -3,21 +3,17 @@ import EventLogistics from "@/components/event-detail/event-logistics";
 import EventSummary from "@/components/event-detail/event-summary";
 
 import Head from "next/head";
-import ErrorAlert from "@/components/ui/error-alert/error-alert";
-import { getAllEvents, getEventById } from "../utils/api-utils";
+import { getEventById, getFeaturedEvents } from "../api/api-utils";
+
 
 const EventDetailPage = (props) => {
   const event = props.selectedEvent;
-
   if (!event) {
     return (
       <>
-        <Head>
-          <title>Event Not Found</title>
-        </Head>
-        <ErrorAlert>
-          <p>No event found!</p>
-        </ErrorAlert>
+        <div>
+          <p>Loading....</p>
+        </div>
       </>
     );
   }
@@ -25,7 +21,7 @@ const EventDetailPage = (props) => {
   return (
     <>
       <Head>
-        <title>{event.title} | Next Event</title>
+        <title>Details | Next Event</title>
       </Head>
       <EventSummary title={event.title} />
       <EventLogistics
@@ -57,9 +53,7 @@ export async function getStaticProps(ctx) {
 }
 
 export async function getStaticPaths() {
-  const events = await getAllEvents();
-  console.log(events);
-  console.log(events.map((event) => event.id));
+  const events = await getFeaturedEvents();
 
   const paths = events.map((event) => {
     if (!event.id) {
@@ -71,6 +65,6 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }

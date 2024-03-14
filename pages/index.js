@@ -1,7 +1,8 @@
 import EventList from "@/components/events/event-list";
 
 import Head from "next/head";
-import { getFeaturedEvents } from "./utils/api-utils";
+import { getFeaturedEvents } from "./api/api-utils";
+
 
 export default function HomePage(props) {
   const { events } = props;
@@ -27,6 +28,3 @@ export async function getStaticProps(ctx) {
     revalidate: 1800,
   };
 }
-
-
-
