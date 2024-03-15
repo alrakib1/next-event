@@ -3,7 +3,6 @@ import EventList from "@/components/events/event-list";
 import Head from "next/head";
 import { getFeaturedEvents } from "./api/api-utils";
 
-
 export default function HomePage(props) {
   const { events } = props;
 
@@ -11,7 +10,11 @@ export default function HomePage(props) {
     <>
       <Head>
         <title>Next Event</title>
-        <meta name="description" content="Find a lot of great events that will help you will a lot." />
+        <meta
+          name="description"
+          content="Find a lot of great events that will help you will a lot."
+          key="description"
+        />
       </Head>
 
       <EventList items={events} />

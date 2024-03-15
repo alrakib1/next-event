@@ -40,7 +40,7 @@ const FilteredEventsPage = (props) => {
           </div>
         </div>
       </>
-    );
+    ); 
   }
 
   const filteredEvents = props.events;
