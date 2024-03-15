@@ -50,6 +50,10 @@ const FilteredEventsPage = (props) => {
       <>
         <Head>
           <title>Event Not Found</title>
+          <meta
+            name="description"
+            content="The events you are searching are not found"
+          />
         </Head>
         <div className="space-y-5">
           <ErrorAlert>
@@ -68,7 +72,13 @@ const FilteredEventsPage = (props) => {
   return (
     <>
       <Head>
-        <title>Filtered Event</title>
+        <title>Filtered Events| Next Event</title>
+        <meta
+          name="description"
+          content={`All events for ${props.date.month - 1}-${
+            props.date.year
+          }. Find the best events for you.`}
+        />
       </Head>
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />

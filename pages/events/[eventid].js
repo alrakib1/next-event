@@ -5,7 +5,6 @@ import EventSummary from "@/components/event-detail/event-summary";
 import Head from "next/head";
 import { getEventById, getFeaturedEvents } from "../api/api-utils";
 
-
 const EventDetailPage = (props) => {
   const event = props.selectedEvent;
   if (!event) {
@@ -21,7 +20,8 @@ const EventDetailPage = (props) => {
   return (
     <>
       <Head>
-        <title>Details | Next Event</title>
+        <title>{event.title} | Next Event</title>
+        <meta name="description" content={event.description} />
       </Head>
       <EventSummary title={event.title} />
       <EventLogistics
