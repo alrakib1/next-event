@@ -4,6 +4,7 @@ import EventSummary from "@/components/event-detail/event-summary";
 
 import Head from "next/head";
 import { getEventById, getFeaturedEvents } from "../api/api-utils";
+import Comments from "@/components/input/comments";
 
 const EventDetailPage = (props) => {
   const event = props.selectedEvent;
@@ -32,6 +33,7 @@ const EventDetailPage = (props) => {
       />
       <EventContent>
         <p>{event.description}</p>
+        <Comments eventId={event.id} />
       </EventContent>
     </>
   );

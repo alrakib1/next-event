@@ -2,6 +2,7 @@ import EventList from "@/components/events/event-list";
 
 import Head from "next/head";
 import { getFeaturedEvents } from "./api/api-utils";
+import NewsletterRegistration from "@/components/input/newsletter-registration";
 
 export default function HomePage(props) {
   const { events } = props;
@@ -16,7 +17,7 @@ export default function HomePage(props) {
           key="description"
         />
       </Head>
-
+      <NewsletterRegistration />
       <EventList items={events} />
     </>
   );
